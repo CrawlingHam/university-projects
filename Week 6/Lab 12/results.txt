@@ -1,0 +1,6 @@
+Round 1: a rolled 3, b rolled 1, c rolled 6
+Round 2: a rolled 6, b rolled 1, c rolled 3
+Round 3: a rolled 2, b rolled 2, c rolled 6
+Round 4: a rolled 6, b rolled 6, c rolled 1
+Round 5: a rolled 4, b rolled 5, c rolled 1
+Round 6: a rolled 6, b rolled 4, c rolled 3
