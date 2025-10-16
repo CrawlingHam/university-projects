@@ -152,19 +152,19 @@ class Game:
         num_players: int = self.conversion.to_int("Enter the number of players: ", self.default_int_prompt_err_msg)
         
         for i in range(num_players):
-            name = input(f"Enter the name of player {i+1}: ")
-            address = input(f"Enter the address of player {i+1}: ")
-            email = input(f"Enter the email of player {i+1}: ")
-            phone_number = input(f"Enter the phone number of player {i+1}: ")
-            country = input(f"Enter the country of player {i+1}: ")
+            name = self.conversion.to_str(f"Enter the name of player {i+1}: ", self.default_str_prompt_err_msg)
+            address = self.conversion.to_str(f"Enter the address of player {i+1}: ", self.default_str_prompt_err_msg)
+            email = self.conversion.to_str(f"Enter the email of player {i+1}: ", self.default_str_prompt_err_msg)
+            phone_number = self.conversion.to_str(f"Enter the phone number of player {i+1}: ", self.default_str_prompt_err_msg)
+            country = self.conversion.to_str(f"Enter the country of player {i+1}: ", self.default_str_prompt_err_msg)
             player = Player(name, address, email, phone_number, country)
             self.players.append(player)
 
         return self.players
 
     def should_play_again(self) -> bool:
-        inp = input("Do you want to play again? (y/n): ")
-        return inp.lower().startswith("y")
+        should_play_again = self.conversion.to_str("Do you want to play again? (y/n): ", self.default_str_prompt_err_msg)
+        return should_play_again.lower().startswith("y")
 
     def get_players_details(self) -> str:
         players_details: str = "Player Information:\n"
