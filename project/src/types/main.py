@@ -1,10 +1,4 @@
-from pygame import event as pygame_event, Rect
-from typing import Callable
+from typing import TypeVar
 
-ColorFunction = Callable[[int], tuple[int, int, int]]
-
-SelectorFunction = Callable[[int], None]
-
-PyGameEventFunction = Callable[[pygame_event.Event], bool]
-
-SetBackRectFunction = Callable[[Rect], None]
+T = TypeVar("T")
+E = TypeVar("E", bound=Exception)
