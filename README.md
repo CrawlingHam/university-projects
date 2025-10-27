@@ -7,13 +7,14 @@ A comprehensive collection of laboratory exercises covering fundamental data sci
 -   **Week 5**: Advanced programming concepts
 -   **Week 6**: Abstract classes, inheritance, and log analysis
 -   **Week 7**: Machine learning fundamentals and decision trees
--   **Week 8**: K-Nearest Neighbors (KNN) regression with preprocessing techniques
+-   **Week 8**: K-Nearest Neighbors (KNN) regression with preprocessing and K-Means clustering
 
 ## Key Features
 
 -   Interactive Python implementations
--   Machine learning algorithms (KNN, Decision Trees)
--   Data preprocessing techniques (one-hot encoding, normalization)
+-   Machine learning algorithms (KNN, Decision Trees, K-Means Clustering)
+-   Data preprocessing techniques (one-hot encoding, normalization/min-max scaling)
+-   Regression and classification models
 -   Statistical analysis and visualization
 -   Object-oriented programming examples
 
@@ -29,6 +30,7 @@ A comprehensive collection of laboratory exercises covering fundamental data sci
 -   pandas (Data Analysis)
 -   numpy (Numerical Computing)
 -   pygame (Game Development)
+-   matplotlib (Data Visualization)
 
 ##### Built-in Modules
 
