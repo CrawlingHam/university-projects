@@ -1,92 +1,27 @@
 from typing import Callable
 import sys
 import os
+from readchar import readkey, key # To handle cross-platform input 
 
 class KeyHandler:
-    def __init__(self) -> None:
-        self.is_windows = os.name == 'nt'
-        if not self.is_windows:
-            import tty, termios
-            self.tty = tty
-            self.termios = termios
+    def __init__(self) -> None: 
+        # We don't need a specific setup for OS using cross-plattform read instead
+        pass
 
     def get_key(self) -> str | None:
-        if self.is_windows:
-            return self.get_key_windows()
-        else:
-            return self.get_key_unix()
+        # Block until a key is pressed and normalize menu and make sure to treat w and "uparrow" and s"downarrow"
+        k = readkey() # crossplattform read 
 
-    def get_key_windows(self) -> str | None:
-        from msvcrt import kbhit, getch
-        
-        if not self.is_key_pressed_windows(kbhit):
-            return
-        
-        key = getch()
+        # Map arrows and WS to 'w' and 's' 
+        if k in (key.UP, 'w', 'W'):
+            return 'w'
+        if k in (key.DOWN, 's', 'S'):
+            return 's'
 
-        arrow_keys_pressed = self.arrow_keys_pressed_windows(key)
-        w_s_keys_pressed = self.w_s_keys_pressed_windows(key)
-
-        if arrow_keys_pressed or w_s_keys_pressed:
-            if arrow_keys_pressed:
-                key = getch()
-            
-            match key:
-                case b'H' | b'w':
-                    return 'w'
-                case b'P' | b's':
-                    return 's'
-        elif self.is_enter_key_windows(key):
+        # Enter/Escape mapping
+        if k in (key.ENTER, '\r', '\n'):
             return '\r'
-        elif self.is_escape_key_windows(key):
+        if k in (key.ESC, '\x1b'):
             return '\x1b'
-
-        return key.decode(encoding="ascii", errors="ignore")
-
-    def get_key_unix(self) -> str | None:
-        fd = sys.stdin.fileno()
-        old_settings = self.termios.tcgetattr(fd)
-        
-        try:
-            self.tty.setraw(sys.stdin.fileno())
-            ch = sys.stdin.read(1)
-            
-            if ch == '\x1b':  # Escape sequence
-                # Check if it's a single Esc or part of arrow key sequence
-                import select
-                if select.select([sys.stdin], [], [], 0.1)[0]:
-                    ch2 = sys.stdin.read(1)
-                    if ch2 == '[':
-                        ch3 = sys.stdin.read(1)
-                        match ch3:
-                            case 'A':  # Up arrow
-                                return 'w'
-                            case 'B':  # Down arrow
-                                return 's'
-                else:
-                    # Single Esc key
-                    return '\x1b'
-            elif ch == '\r':  # Enter
-                return '\r'
-            elif ch in ['w', 'W', 's', 'S']:  # W/S keys
-                return ch.lower()
-            else:
-                return ch
-                
-        finally:
-            self.termios.tcsetattr(fd, self.termios.TCSADRAIN, old_settings)
-        
-    def arrow_keys_pressed_windows(self, key: str) -> bool:
-        return key == b'\xe0'
-
-    def is_key_pressed_windows(self, kbhit: Callable[[], bool]) -> bool:
-        return kbhit()
-
-    def is_enter_key_windows(self, key: str) -> bool:
-        return key == b'\r'
-
-    def is_escape_key_windows(self, key: str) -> bool:
-        return key == b'\x1b'
-
-    def w_s_keys_pressed_windows(self, key: str) -> bool:
-        return key in [b'W', b'w', b'S', b's']
+        # Fallback to return the raw key if the others aren't fulfilled
+        return k 
