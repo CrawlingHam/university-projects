@@ -14,9 +14,10 @@ def bubble_sort(array: list[int]) -> int:
 
 if __name__ == "__main__":
     test_count = 10
+    array_size = 10
 
     for i in range(test_count):
-        array = [randint(1, 100) for _ in range(10)]
+        array = [randint(1, 100) for _ in range(array_size)]
         print(f"Unsorted array: {array}")
         comparisons = bubble_sort(array)
         print(f"Sorted array: {array}")

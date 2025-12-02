@@ -22,3 +22,19 @@ class PlotData:
     x_label: str
     y_label: str
     title: str
+
+@dataclass
+class BinarySearchResult:
+    all_indices: list[int]
+    recursion_count: int
+    result: int
+    found: bool
+
+@dataclass
+class BinarySearchResults:
+    sorted_array: list[int]
+    all_indices: list[int]
+    recursion_count: int
+    target: int
+    result: int
+    found: bool

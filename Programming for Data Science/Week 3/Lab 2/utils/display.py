@@ -1,4 +1,4 @@
-from data_models.models import PlotData, PerformanceComparison, ListType
+from data_models.models import PlotData, PerformanceComparison, ListType, BinarySearchResults
 import matplotlib.pyplot as plt
 
 def displayPlot(sizes: list[int], title: str, x_label: str, y_label: str, data: list[list[float]], labels: list[str], markers: list[str]) -> None:
@@ -40,3 +40,16 @@ def displayTable(results: list[PerformanceComparison], list_type: ListType) -> N
     print("-" * 150)
     for r in results:
         print(f"{r.size:<10} {r.bubble_time:<18.6f} {r.bubble_comparisons:<20.1f} {r.merge_time:<18.6f} {r.merge_recursions:<20.1f} {r.quicksort_time:<18.6f} {r.quicksort_recursions:<20.1f} {r.builtin_time:<18.6f}")
+
+def display_binary_search_result(results: list[BinarySearchResults]) -> None:
+    print(f"\n{'='*140}")
+    print(f"{'Test':<6} {'Array':<35} {'Target':<8} {'Found':<8} {'Index':<8} {'Recursions':<12} {'All Indices':<20} {'Has Duplicates':<15}")
+    print("-" * 140)
+    for idx, result in enumerate(results, 1):
+        array_str = str(result.sorted_array)[:33] + "..." if len(str(result.sorted_array)) > 35 else str(result.sorted_array)
+        found_str = "Yes" if result.found else "No"
+        index_str = str(result.result) if result.found else "N/A"
+        all_indices_str = str(result.all_indices) if result.found else "N/A"
+        has_duplicates = "Yes" if result.found and len(result.all_indices) > 1 else "No"
+        print(f"{idx:<6} {array_str:<35} {result.target:<8} {found_str:<8} {index_str:<8} {result.recursion_count:<12} {all_indices_str:<20} {has_duplicates:<15}")
+    print("=" * 140)

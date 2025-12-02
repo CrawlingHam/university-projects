@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-
 class Node:
     def __init__(self, value):
         """Initialize a Node with an integer value."""
