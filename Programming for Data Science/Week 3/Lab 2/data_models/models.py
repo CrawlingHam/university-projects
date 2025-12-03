@@ -38,3 +38,8 @@ class BinarySearchResults:
     target: int
     result: int
     found: bool
+
+@dataclass
+class TreeSearchResult:
+    bfs_visited_nodes: list[int]
+    dfs_visited_nodes: list[int]
