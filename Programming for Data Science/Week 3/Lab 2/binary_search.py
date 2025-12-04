@@ -6,12 +6,22 @@ def binary_search(arr: list[int], low: int, high: int, x: int) -> BinarySearchRe
     recursion_count = 0
 
     if high < low:
-        return BinarySearchResult(result=-1, recursion_count=recursion_count, found=False, all_indices=[])
+        return BinarySearchResult(
+            recursion_count=recursion_count,
+            all_indices=[],
+            found=False,
+            result=-1,
+        )
 
     mid = low + (high - low) // 2
 
     if arr[mid] == x:
-        return BinarySearchResult(result=mid, recursion_count=recursion_count, found=True, all_indices=[])
+        return BinarySearchResult(
+            recursion_count=recursion_count,
+            all_indices=[],
+            found=True,
+            result=mid,
+        )
     
     elif arr[mid] > x:
         binary_search_result = binary_search(arr, low, mid-1, x)

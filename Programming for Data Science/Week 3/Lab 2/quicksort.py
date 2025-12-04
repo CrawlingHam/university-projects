@@ -1,6 +1,5 @@
 from random import randint
 
-
 def quicksort(array: list[int], recursion_count: list[int]) -> list[int]:
     if len(array) <= 1:
         return array
@@ -12,7 +11,6 @@ def quicksort(array: list[int], recursion_count: list[int]) -> list[int]:
     right = [x for x in array if x > pivot]
     
     return quicksort(left, recursion_count) + middle + quicksort(right, recursion_count)
-
 
 if __name__ == "__main__":
     test_count = 10

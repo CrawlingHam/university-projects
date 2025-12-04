@@ -57,12 +57,12 @@ def performance_comparison(array_size: int, trials: int, list_type: ListType = "
 
 if __name__ == "__main__":
     list_types: list[ListType] = ["sorted", "almost_sorted", "random", "reverse_sorted"]
-    labels = ["Built-in sorted()", "Bubble Sort", "Merge Sort", "Quicksort"]
+    labels: list[str] = ["Built-in sorted()", "Bubble Sort", "Merge Sort", "Quicksort"]
     all_results: dict[ListType, list[PerformanceComparison]] = {}
+    markers: list[str] = ["o", "s", "^", "D"]
     all_plot_data: list[PlotData] = []
-    markers = ["o", "s", "^", "D"]
+    sizes: list[int] = [10, 100, 1000]
     y_label = "Time (seconds)"
-    sizes = [10, 100, 1000]
     x_label = "Array Size"
     trials = 10
     
