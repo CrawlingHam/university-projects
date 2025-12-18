@@ -1,6 +1,7 @@
-def display_results(k: int, accuracy: float, predictions: list[str], test_labels: list[str]) -> None:
+def display_results(k: int, accuracy: float, predictions: list[str], test_labels: list[str], execution_time: float) -> None:
     print(f"KNN Algorithm Results (k={k}):")
     print(f"Accuracy: {accuracy:.4f} ({accuracy*100:.2f}%)")
+    print(f"Execution time: {execution_time * 1000:.3f} milliseconds")
     print(f"\nTotal test points: {len(test_labels)}")
     print(f"Correct predictions: {sum(1 for p, a in zip(predictions, test_labels) if p == a)}")
     print(f"Incorrect predictions: {sum(1 for p, a in zip(predictions, test_labels) if p != a)}")

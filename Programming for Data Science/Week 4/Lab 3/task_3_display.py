@@ -1,4 +1,4 @@
-from imports import *
+from numpy import ndarray as np_ndarray, unique as np_unique
 
 def display_results(data: np_ndarray, execution_time: float, k: int, cluster_assignments: np_ndarray, final_centroids: np_ndarray) -> None:
     print("\nInformation:")
@@ -21,5 +21,3 @@ def display_results(data: np_ndarray, execution_time: float, k: int, cluster_ass
         print(f"  Cluster {i}:")
         for j, feature_name in enumerate(feature_names):
             print(f"    {feature_name}: {centroid[j]:.4f}")
-
-    print("=" * 60)

@@ -23,6 +23,6 @@ def knn_predict(test_features: list[list[float]], train_features: list[list[floa
     
     return predictions
 
-def calculate_accuracy(predictions: list[str], actual_labels: list[str]) -> float:
-    correct: int = sum(1 for pred, actual in zip(predictions, actual_labels) if pred == actual)
-    return correct / len(actual_labels) if len(actual_labels) > 0 else 0.0
+def calculate_accuracy(predictions: list[str], test_labels: list[str]) -> float:
+    correct: int = sum(1 for pred, actual in zip(predictions, test_labels) if pred == actual)
+    return correct / len(test_labels) if len(test_labels) > 0 else 0.0

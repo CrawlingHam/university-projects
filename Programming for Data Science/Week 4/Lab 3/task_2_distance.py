@@ -9,4 +9,3 @@ def distance_between_points(test_point: list[float], training_points: list[list[
     distances = np_sqrt(sum_of_squares)
     
     return distances.tolist()
-
